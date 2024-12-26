@@ -25,15 +25,45 @@ The file and directory structure of the project is as follows (can be adjusted a
 
 ```
 ├── public/ 
-│ └── index.html # 主页面入口 / Main entry page 
+│   └── index.html # 主页面入口 / Main entry page
 ├── src/ 
-│ ├── assets/ # 静态资源 / Static resources 
-│ ├── components/ # 组件 / Components 
-│ ├── views/ # 视图页面 / View pages 
-│ ├── App.vue # 根组件 / Root component 
-│ └── main.js # 应用入口文件 / Application entry file 
-├── package.json # 项目依赖配置 / Project dependencies configuration 
-├── vite.config.js # Vite 配置文件 / Vite configuration file 
+│   ├── assets/ # 静态资源 / Static resources
+│   │   ├── audios/ # 音频资源 / Audio resources
+│   │   │   ├── notification-sound.wav
+│   │   │   └── background-music.mp3
+│   │   ├── fonts/ # 字体资源 / Font resources
+│   │   │   ├── custom-font.ttf
+│   │   │   └── custom-font.woff
+│   │   ├── images/ # 图片资源 / Image resources
+│   │   │   ├── common/ # 公共图片 / Common images
+│   │   │   │   ├── logo.png
+│   │   │   │   └── background.jpg
+│   │   ├── misc/ # 杂项文件 / Miscellaneous files
+│   │   │   ├── temp-file.txt
+│   │   │   └── special-format.bin
+│   │   ├── mock-data/ # 模拟数据文件 / Mock data files
+│   │   │   ├── users.json
+│   │   │   └── products.json
+│   │   ├── pdfs/ # PDF 文件 / PDF files
+│   │   │   ├── user-manual.pdf
+│   │   │   └── terms-of-service.pdf
+│   │   ├── styles/ # 样式文件 / Style files
+│   │   │   ├── common/ # 公共样式 / Common styles
+│   │   │   │   ├── global.css
+│   │   │   │   └── variables.scss
+│   │   └── videos/ # 视频资源 / Video resources
+│   │       ├── intro.mp4
+│   │       └── tutorial.webm
+│   ├── components/ # 组件 / Components
+│   │   ├── Header.vue
+│   │   └── Footer.vue
+│   ├── views/ # 视图页面 / View pages
+│   │   ├── Home.vue
+│   │   └── About.vue
+│   ├── App.vue # 根组件 / Root component
+│   └── main.js # 应用入口文件 / Application entry file
+├── package.json # 项目依赖配置 / Project dependencies configuration
+├── vite.config.js # Vite 配置文件 / Vite configuration file
 └── README.md # 项目说明文档 / Project documentation
 ```
 
