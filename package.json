@@ -9,6 +9,7 @@
     "build": "pnpm exec vite build --mode production",
     "preview": "pnpm exec vite preview",
     "preinstall": "npx only-allow pnpm -y",
+    "prettier": "prettier --write \"./src/*.{html,vue,ts,js,json,md}\"",
     "lint": "pnpm exec eslint src --fix --ext .js,.vue --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
