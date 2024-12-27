@@ -1,8 +1,9 @@
 {
   "name": "completevueproject",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "author": "Gojo Satoru",
   "scripts": {
     "dev": "pnpm exec vite",
     "build": "pnpm exec vite build",
@@ -15,5 +16,9 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "vite": "^6.0.5"
+  },
+  "engines": {
+    "node": ">=20.16.0",
+    "pnpm": ">=9.15.1"
   }
 }
