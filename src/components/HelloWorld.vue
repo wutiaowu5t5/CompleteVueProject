@@ -28,7 +28,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import { UserApi } from '@services/services.js'
 
 defineProps({
   msg: String,
