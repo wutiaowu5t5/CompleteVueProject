@@ -1,3 +1,4 @@
+/* prettier-ignore */
 /*
  * @Description: store.js
  * @Author: 5t5
