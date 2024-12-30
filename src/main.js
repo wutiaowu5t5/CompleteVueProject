@@ -10,6 +10,11 @@ const VueController = createApp(App)
 import router from '@router/router.js'
 VueController.use(router)
 
+// 挂载pinia状态管理系统
+// mount the pinia status management system
+import pinia from '@store/store.js'
+VueController.use(pinia)
+
 // 绑定dom节点实例
 // bind dom node instances
 VueController.mount('#app')
