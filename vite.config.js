@@ -21,6 +21,13 @@ export default ({ mode }) => {
         '@utils': path.resolve('./src/utils'),
         '@views': path.resolve('./src/views')
       }
+    },
+    css: {
+      preprocessorOptions: {
+        less: {
+          additionalData: `@import "./src/assets/styles/variables.less";` // 引入全局变量文件
+        }
+      }
     }
   })
 }
