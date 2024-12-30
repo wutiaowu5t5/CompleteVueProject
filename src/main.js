@@ -15,6 +15,10 @@ VueController.use(router)
 import pinia from '@store/store.js'
 VueController.use(pinia)
 
+// 引入ant-design-vue样式
+// introduce the ant design vue style
+import 'ant-design-vue/dist/reset.css'
+
 // 绑定dom节点实例
 // bind dom node instances
 VueController.mount('#app')

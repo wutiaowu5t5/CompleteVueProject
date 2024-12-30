@@ -1,13 +1,26 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+
 // 路径别名
 import path from 'path'
 
-// https://vite.dev/config/
+// 自动导入ant-design-vue组件
+import Components from 'unplugin-vue-components/vite'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+
 export default ({ mode }) => {
   console.log('加载的环境变量', loadEnv(mode, process.cwd()))
   return defineConfig({
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      Components({
+        resolvers: [
+          AntDesignVueResolver({
+            importStyle: false // css in js
+          })
+        ]
+      })
+    ],
     // 路径别名配置 path alias configuration
     resolve: {
       alias: {
