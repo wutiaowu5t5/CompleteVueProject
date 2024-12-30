@@ -57,6 +57,28 @@ The file and directory structure of the project is as follows (can be adjusted a
 │   ├── components/ # 组件 / Components
 │   │   ├── Header.vue
 │   │   └── Footer.vue
+│   ├── directives/ # 自定义指令 / Custom directives
+│   ├── guidelines/ # 开发指南 / Development guidelines
+│   ├── hooks/ # 自定义 Hooks / Custom hooks
+│   ├── interceptors/ # 请求拦截器 / Request interceptors
+│   ├── permissions/ # 权限管理 / Permission management
+│   ├── router/ # 路由配置 / Routing configuration
+│   │   ├── routeSource/ # 路由源文件 / Route source files
+│   │   │   │   ├── dynamicRouteConfiguration.js # 动态路由配置 / Dynamic route configuration
+│   │   │   │   └── fixedRouteConfiguration.js # 静态路由配置 / Fixed route configuration
+│   │   └── router.js # 主路由配置文件 / Main routing configuration file
+│   ├── services/ # api层 / Service layer
+│   │   ├── modules/ # api模块划分 / Service modules
+│   │   │   │   └── user.js # 用户相关api / User api service module
+│   │   └── services.js # 统一暴露出口 / General services
+│   ├── store/ # 状态管理 / State management
+│   │   ├── modules/ # 状态模块 / State modules
+│   │   │   │   └── userInfo.js # 用户信息状态模块 / User info state module
+│   │   └── store.js # 主状态管理文件 / Main state management file
+│   ├── utils/ # 工具函数 / Utility functions
+│   │   ├── common/ # 通用工具函数 / Common utility functions
+│   │   │   │   └── commonUtils.js #  / Common utility functions
+│   │   └── modules/ # 模块化工具函数 / Modular utility functions
 │   ├── views/ # 视图页面 / View pages
 │   │   ├── Home.vue
 │   │   └── About.vue
