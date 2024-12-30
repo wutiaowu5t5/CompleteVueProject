@@ -3,9 +3,16 @@
  * @Author: 5t5
  * @Time: 2024/12/30 16:48
 -->
-<template><div class="card">我是首页</div></template>
+<template>
+  <div class="card">我是首页</div>
+
+  <a-time-picker v-model:value="value" format="HH:mm" />
+</template>
 
 <script setup>
+import { ref } from 'vue'
+import dayjs from 'dayjs'
+const value = ref(dayjs('12:08', 'HH:mm'))
 // Composition API
 // Store
 // Service Apis

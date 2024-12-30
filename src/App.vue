@@ -16,4 +16,6 @@ dayjs.locale('zh-cn')
 const localeRef = ref(zhCN)
 </script>
 
-<style scoped></style>
+<style lang="less">
+@import '@assets/styles/common.less';
+</style>

@@ -1,7 +1,6 @@
 // 初始化导入vue
 // example initialize the imported vue
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
 const VueController = createApp(App)
 
