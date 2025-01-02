@@ -8,11 +8,19 @@ import path from 'path'
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 
+// 视图分析打包资源
+import { visualizer } from 'rollup-plugin-visualizer'
+
 export default ({ mode }) => {
   console.log('加载的环境变量', loadEnv(mode, process.cwd()))
   return defineConfig({
     plugins: [
       vue(),
+      visualizer({
+        emitFile: false,
+        file: 'states.html',
+        open: true
+      }),
       Components({
         resolvers: [
           AntDesignVueResolver({
@@ -39,6 +47,27 @@ export default ({ mode }) => {
       preprocessorOptions: {
         less: {
           additionalData: `@import "./src/assets/styles/variables.less";` // 引入全局变量文件
+        }
+      }
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          //静态资源分类打包
+          chunkFileNames: 'static/js/[name]-[hash].js',
+          entryFileNames: 'static/js/[name]-[hash].js',
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+
+          manualChunks(id) {
+            //静态资源拆分打包
+            if (id.includes('node_modules')) {
+              return id
+                .toString()
+                .split('node_modules/')[1]
+                .split('/')[0]
+                .toString()
+            }
+          }
         }
       }
     }
