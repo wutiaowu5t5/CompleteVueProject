@@ -11,6 +11,9 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 // 视图分析打包资源
 import { visualizer } from 'rollup-plugin-visualizer'
 
+// 开启gzip压缩打包
+import viteCompression from 'vite-plugin-compression'
+
 export default ({ mode }) => {
   console.log('加载的环境变量', loadEnv(mode, process.cwd()))
   return defineConfig({
@@ -27,6 +30,13 @@ export default ({ mode }) => {
             importStyle: false // css in js
           })
         ]
+      }),
+      viteCompression({
+        verbose: true,
+        disable: false,
+        threshold: 10240,
+        algorithm: 'gzip',
+        ext: '.gz'
       })
     ],
     // 路径别名配置 path alias configuration
