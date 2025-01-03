@@ -80,21 +80,38 @@ and so on.
 > The footer is to add a link to the issue address or other document if needed,
 > or to close an issue
 
-## 分支规范
+## 分支命名规范 / The branch naming convention
 
-### 基本原则
+### 基本原则 / Basic principles
 
 master为保护分支，不直接在master上进行代码修改和提交
 
-### 命名原则
+The master does not modify and commit code directly on the master to protect the
+branch
+
+### 命名原则 / The naming principle
 
 开发日常需求或者项目时，从`master`分支上`checkout`一个`feature`分支进行开发或者`bugfix`分支进行`bug`修复，功能测试完毕并且项目发布上线后，将`feature`分支合并到主干`master`，并且打`Tag`发布，最后删除开发分支
 
 分支命名规范如下：
 
-- 分支版本命名规则：分支类型 _ 分支发布时间 _
-  分支功能。比如：`feat_20170401_fairy_flower`
-- 分支类型包括：`feat`、
-  `fix`、`refactor`三种类型，即新功能开发、`bug`修复和代码重构
+- 分支版本命名规则：分支类型 * 分支发布时间
+  *分支功能。比如：`feat_20170401_fairy_flower`
+- 分支类型包括：`feat`、`fix`、`refactor`三种类型，即新功能开发、`bug`修复和代码重构
 - 时间使用年月日进行命名，不足2位补0
 - 分支功能命名使用`snake case`命名法，即下划线命名。
+
+When developing a daily requirement or project, checkout from a 'master' branch
+or a 'Bugfix' branch to fix a 'bug' , merge the 'feature' branch into the trunk
+'master' and publish by 'Tag' , then delete the Development Branch
+
+The branch nomenclature is as follows:
+
+- branch version naming convention: Branch Type Branch release time branch
+  function. For example: 'feat'
+- the branch types include: 'feat' , 'Fix' , and 'Refactor' , which are new
+  feature development, 'bug' repair, and code refactoring
+- the time is named using the date of year, month and day, less than 2 digits
+  make up 0
+- the branch function is named using the 'Snake Case' nomenclature, that is, the
+  underscore nomenclature.
