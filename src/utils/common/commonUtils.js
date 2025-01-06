@@ -4,4 +4,9 @@
  * @Time: 2024/12/26 18:20
  */
 
-export {}
+import { v4 as uuidv4 } from 'uuid'
+const generateUuid = () => {
+  return uuidv4()
+}
+
+export { generateUuid }
