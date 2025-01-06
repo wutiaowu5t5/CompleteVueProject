@@ -1,4 +1,3 @@
-/* prettier-ignore */
 /*
  * @Description: permission.js 权限文件
  * @Author: 5t5

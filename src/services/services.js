@@ -1,4 +1,3 @@
-/* prettier-ignore */
 /*
  * @Description: services.js 后端接口统一抛出文件
  * @Author: 5t5

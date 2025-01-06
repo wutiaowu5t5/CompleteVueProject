@@ -257,8 +257,8 @@
 - bad
 
   ```javascript
-  let class = "Advanced"; // `class` 是保留字
-  let function = () => {}; // `function` 是保留字
+  let class = "Advanced" // `class` 是保留字
+  let function = () => {} // `function` 是保留字
   ```
 
 - good
@@ -268,11 +268,152 @@
   let myFunction = () => {} // 使用其他名称
   ```
 
-## 常量
+## 作用域 / scope
 
-### 命名方式
+- bad
 
-#### 全部大写 /
+  ```javascript
+  var globalVar = 'global'
+  ```
+
+- good
+
+  ```javascript
+  function myFunction() {
+    let blockScopedVar = 'block scoped'
+  }
+  ```
+
+## 初始化与声明 / Initialization and declaration
+
+- bad
+
+  ```javascript
+  let user
+  console.log(user) // undefined
+  ```
+
+- good
+
+  ```javascript
+  let user = null
+  console.log(user) // null
+
+  // 提供默认值
+  let userName = user?.name || 'Guest'
+  ```
+
+## 常量 vs 变量 / Constant vs variable
+
+- bad
+
+  ```javascript
+  let PI = 3.14159
+  ```
+
+- good
+
+  ```javascript
+  const PI = 3.14159
+  ```
+
+## 类型一致性 / Type consistency
+
+- bad
+
+  ```javascript
+  let id = 123
+  id = '123' // 类型从数字变为字符串
+  ```
+
+- good
+
+  ```javascript
+  let userId = 123 // 明确表示是数字类型
+  ```
+
+## 解构赋值 / Deconstruct the assignment
+
+- bad
+
+  ```javascript
+  const person = { name: 'Alice', age: 30 }
+  const name = person.name
+  const age = person.age
+  ```
+
+- good
+
+  ```javascript
+  const { name, age } = person
+  ```
+
+## 避免重复声明 / Avoid repeating statements
+
+- bad
+
+  ```javascript
+  let count = 1
+  let count = 2 // 报错：重复声明
+  ```
+
+- good
+
+  ```javascript
+  let initialCount = 1
+  let updatedCount = 2
+  ```
+
+## 注释与文档 / Comments and documentation
+
+- bad
+
+  ```javascript
+  let result = someComplexCalculation()
+  ```
+
+- good
+
+  ```javascript
+  /**
+   * 计算两个数的平均值。
+   * @param {number} a - 第一个数
+   * @param {number} b - 第二个数
+   * @returns {number} 平均值
+   */
+  function calculateAverage(a, b) {
+    return (a + b) / 2
+  }
+
+  const average = calculateAverage(10, 20)
+  ```
+
+## 性能优化 / Performance optimization
+
+- bad
+
+  ```javascript
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i]
+    // 处理 item
+  }
+  ```
+
+- good
+
+  ```javascript
+  const length = array.length
+  for (let i = 0; i < length; i++) {
+    const item = array[i]
+    // 处理 item
+  }
+  ```
+
+## 常量 / Constant
+
+### 命名方式 / The naming method
+
+#### 全部大写 / All caps
 
 - bad
 

@@ -1,4 +1,3 @@
-/* prettier-ignore */
 /*
  * @Description: axios.js
  * @Author: 5t5

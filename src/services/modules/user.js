@@ -1,4 +1,3 @@
-/* prettier-ignore */
 /*
  * @Description: user.js 用户相关的接口
  * @Author: 5t5
