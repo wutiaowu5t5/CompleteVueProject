@@ -101,6 +101,44 @@ class WebStorageController {
       return null
     }
   }
+
+  /**
+   * 删除存储项。
+   *
+   * @param { String } key - 存储项的键。
+   */
+  deleteStorageItem(key) {
+    // 验证输入类型
+    if (typeof key !== 'string') {
+      console.error(
+        'WebStorage.deleteStorageItem() => : Invalid input. Key must be a string.'
+      )
+      return
+    }
+
+    // 删除数据
+    try {
+      this.storage[this.type].removeItem(key)
+    } catch (error) {
+      console.error(
+        `WebStorage.deleteStorageItem() => : Error deleting item from storage: ${error.message}`
+      )
+    }
+  }
+
+  /**
+   * 清空存储
+   */
+  clearStorage() {
+    // 清空数据
+    try {
+      this.storage[this.type].clear()
+    } catch (error) {
+      console.error(
+        `WebStorage.clearStorage() => : Error clearing storage: ${error.message}`
+      )
+    }
+  }
 }
 const WebStorage = new WebStorageController()
 
