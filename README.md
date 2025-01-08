@@ -27,69 +27,135 @@ The file and directory structure of the project is as follows (can be adjusted
 according to the actual situation) :
 
 ```
-├── public/
-│   └── index.html # 主页面入口 / Main entry page
-├── src/
-│   ├── assets/ # 静态资源 / Static resources
-│   │   ├── audios/ # 音频资源 / Audio resources
-│   │   │   ├── notification-sound.wav
-│   │   │   └── background-music.mp3
-│   │   ├── fonts/ # 字体资源 / Font resources
-│   │   │   ├── custom-font.ttf
-│   │   │   └── custom-font.woff
-│   │   ├── images/ # 图片资源 / Image resources
-│   │   │   ├── common/ # 公共图片 / Common images
-│   │   │   │   ├── logo.png
-│   │   │   │   └── background.jpg
-│   │   ├── misc/ # 杂项文件 / Miscellaneous files
-│   │   │   ├── temp-file.txt
-│   │   │   └── special-format.bin
-│   │   ├── mock-data/ # 模拟数据文件 / Mock data files
-│   │   │   ├── users.json
-│   │   │   └── products.json
-│   │   ├── pdfs/ # PDF 文件 / PDF files
-│   │   │   ├── user-manual.pdf
-│   │   │   └── terms-of-service.pdf
-│   │   ├── styles/ # 样式文件 / Style files
-│   │   │   ├── common/ # 公共样式 / Common styles
-│   │   │   │   ├── global.css
-│   │   │   │   └── variables.scss
-│   │   └── videos/ # 视频资源 / Video resources
-│   │       ├── intro.mp4
-│   │       └── tutorial.webm
-│   ├── components/ # 组件 / Components
-│   │   ├── Header.vue
-│   │   └── Footer.vue
-│   ├── directives/ # 自定义指令 / Custom directives
-│   ├── guidelines/ # 开发指南 / Development guidelines
-│   ├── hooks/ # 自定义 Hooks / Custom hooks
-│   ├── interceptors/ # 请求拦截器 / Request interceptors
-│   ├── permissions/ # 权限管理 / Permission management
-│   ├── router/ # 路由配置 / Routing configuration
-│   │   ├── routeSource/ # 路由源文件 / Route source files
-│   │   │   │   ├── dynamicRouteConfiguration.js # 动态路由配置 / Dynamic route configuration
-│   │   │   │   └── fixedRouteConfiguration.js # 静态路由配置 / Fixed route configuration
-│   │   └── router.js # 主路由配置文件 / Main routing configuration file
-│   ├── services/ # api层 / Service layer
-│   │   ├── modules/ # api模块划分 / Service modules
-│   │   │   │   └── user.js # 用户相关api / User api service module
-│   │   └── services.js # 统一暴露出口 / General services
-│   ├── store/ # 状态管理 / State management
-│   │   ├── modules/ # 状态模块 / State modules
-│   │   │   │   └── userInfo.js # 用户信息状态模块 / User info state module
-│   │   └── store.js # 主状态管理文件 / Main state management file
-│   ├── utils/ # 工具函数 / Utility functions
-│   │   ├── modules/ # 模块化工具函数 / Modular utility functions
-│   │   └── utilsOutput.js # 工具函数出口 / tool function exit
-│   ├── views/ # 视图页面 / View pages
-│   │   ├── Home.vue
-│   │   └── About.vue
-│   ├── App.vue # 根组件 / Root component
-│   └── main.js # 应用入口文件 / Application entry file
-├── package.json # 项目依赖配置 / Project dependencies configuration
-├── vite.config.js # Vite 配置文件 / Vite configuration file
-└── README.md # 项目说明文档 / Project documentation
+├── .husky/ # Git hooks配置 / Git hooks configuration
+├── .vscode/ # VS Code配置 / VS Code configuration
+├── public/ # 静态资源 / Static resources
+├── src/ # 源代码 / Source code
+│ ├── assets/ # 静态资源 / Static resources
+│ │ ├── audios/ # 音频资源 / Audio resources
+│ │ ├── fonts/ # 字体资源 / Font resources
+│ │ ├── images/ # 图片资源 / Image resources
+│ │ │ └── common/ # 公共图片 / Common images
+│ │ ├── misc/ # 杂项文件 / Miscellaneous files
+│ │ ├── mock-data/ # 模拟数据 / Mock data
+│ │ ├── pdfs/ # PDF文件 / PDF files
+│ │ ├── styles/ # 样式文件 / Style files
+│ │ │ └── common/ # 公共样式 / Common styles
+│ │ └── videos/ # 视频资源 / Video resources
+│ ├── components/ # 组件 / Components
+│ │ └── common/ # 公共组件 / Common components
+│ ├── directives/ # 自定义指令 / Custom directives
+│ ├── guidelines/ # 开发指南 / Development guidelines
+│ ├── hooks/ # 自定义Hooks / Custom hooks
+│ ├── interceptors/ # 请求拦截器 / Request interceptors
+│ ├── permissions/ # 权限管理 / Permission management
+│ ├── router/ # 路由配置 / Routing configuration
+│ │ └── routeSource/ # 路由源文件 / Route source files
+│ │ │ ├── dynamicRouteConfiguration.js # 动态路由配置 / Dynamic routes
+│ │ │ └── fixedRouteConfiguration.js # 静态路由配置 / Fixed routes
+│ ├── services/ # API服务 / API services
+│ └── modules/ # API模块 / API modules
+│ │ └── user.js # 用户相关API / User related APIs
+│ ├── store/ # 状态管理 / State management
+│ │ └── modules/ # 状态模块 / State modules
+│ │ │ └── userInfo.js # 用户信息状态 / User info state
+│ ├── utils/ # 工具函数 / Utility functions
+│ │ └── modules/ # 工具模块 / Utility modules
+│ │ │ ├── emitter/ # 事件发射器 / Event emitter
+│ │ │ ├── eventBus/ # 事件总线 / Event bus
+│ │ │ ├── sourceUrl/ # 资源URL处理 / Source URL handling
+│ │ │ ├── uuid/ # UUID生成器 / UUID generator
+│ │ │ └── webStorage/ # Web存储 / Web storage
+│ └── views/ # 页面视图 / View pages
+│ │ └── homePage/ # 首页 / Home page
+├── .env # 环境变量 / Environment variables
+├── .env.development # 开发环境变量 / Development environment variables
+├── .env.production # 生产环境变量 / Production environment variables
+├── .eslintignore # ESLint忽略配置 / ESLint ignore configuration
+├── .eslintrc.cjs # ESLint配置 / ESLint configuration
+├── .gitignore # Git忽略配置 / Git ignore configuration
+├── .npmrc # NPM配置 / NPM configuration
+├── .prettierignore # Prettier忽略配置 / Prettier ignore configuration
+├── .prettierrc.cjs # Prettier配置 / Prettier configuration
+├── .stylelintignore # StyleLint忽略配置 / StyleLint ignore configuration
+├── .stylelintrc.json # StyleLint配置 / StyleLint configuration
+├── commitlint.config.cjs # Commit规范配置 / Commit specification configuration
+├── index.html # HTML模板 / HTML template
+├── package.json # 项目配置 / Project configuration
+├── pnpm-lock.yaml # 依赖锁定文件 / Dependencies lock file
+├── README.md # 项目说明 / Project documentation
+└── vite.config.js # Vite配置 / Vite configuration
 ```
+
+### 目录说明 / Directory Description:
+
+1. **assets/**: 存放项目所需的各类静态资源，按资源类型分类存放
+
+   - Stores various static resources needed for the project, organized by
+     resource type
+
+2. **components/**: 存放可复用的Vue组件，包含公共组件
+
+   - Contains reusable Vue components, including common components
+
+3. **directives/**: 存放Vue自定义指令
+
+   - Contains Vue custom directives
+
+4. **guidelines/**: 存放项目开发规范和指南文档
+
+   - Contains project development specifications and guidelines
+
+5. **hooks/**: 存放可复用的Vue组合式函数
+
+   - Contains reusable Vue composition functions
+
+6. **interceptors/**: 存放API请求拦截器
+
+   - Contains API request interceptors
+
+7. **permissions/**: 存放权限相关的配置和处理逻辑
+
+   - Contains permission-related configurations and logic
+
+8. **router/**: 存放路由配置，包括动态路由和静态路由
+
+   - Contains routing configurations, including dynamic and static routes
+
+9. **services/**: 存放API接口服务，按模块划分
+
+   - Contains API interface services, organized by modules
+
+10. **store/**: 存放状态管理相关文件，使用模块化管理
+
+    - Contains state management files, using modular management
+
+11. **utils/**: 存放工具函数，按功能模块划分
+
+    - Contains utility functions, organized by functional modules
+
+12. **views/**: 存放页面级组件
+    - Contains page-level components
+
+### 使用说明 / Usage Notes:
+
+1. 每个目录都应包含 README.md 文件，说明该目录的用途和使用方式
+
+   - Each directory should contain a README.md file explaining its purpose and
+     usage
+
+2. 模块化的目录（如 services/modules/）应通过统一的出口文件导出
+
+   - Modular directories should export through a unified export file
+
+3. 组件和页面文件应遵循 Vue 单文件组件规范
+
+   - Components and page files should follow Vue Single File Component
+     specifications
+
+4. 工具函数应通过 utils/utilsOutput.js 统一导出
+   - Utility functions should be exported uniformly through utils/utilsOutput.js
+   -
 
 ## 安装与启动 / Installation and Startup
 
@@ -176,3 +242,21 @@ Project 的关注和支持！如果您有任何问题或建议，请随时提交
 Thank you for your attention and support of Complete Vue Project! If you have
 any questions or suggestions, please feel free to submit an Issue or Pull
 Request.
+
+## 补充说明 / Additional notes
+
+1. 所有配置文件（.eslintrc.cjs, .prettierrc.cjs等）都放在项目根目录下
+2. src目录下的每个功能模块都应包含自己的index.js作为统一出口
+3. 组件和视图文件使用Vue单文件组件（.vue）格式
+4. 工具函数应按模块分类并统一从utils/utilsOutput.js导出
+5. 环境变量文件（.env.\*）根据不同环境分别配置
+
+6. All configuration files (.eslintrc.cjs, .prettierrc.cjs, etc.) are placed in
+   the project root directory
+7. Each functional module under the src directory should contain its own
+   index.js as a unified export
+8. Components and view files use Vue Single File Component (.vue) format
+9. Utility functions should be categorized by module and exported uniformly from
+   utils/utilsOutput.js
+10. Environment variable files (.env.\*) are configured separately according to
+    different environments
