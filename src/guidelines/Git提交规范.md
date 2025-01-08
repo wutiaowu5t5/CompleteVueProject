@@ -1,4 +1,4 @@
-# Git提交流程及规范
+# Git提交流程及规范 / Git Commit Specification
 
 ## 目的 / Objective
 
@@ -13,74 +13,103 @@ automated log generation, etc.
 Unify the team's Git workflow, including branch usage, TAG specification, issue,
 and so on.
 
-## Git commit 日志基本规范 / Git commit log basic specification
+## 提交方式 / Commit Method
 
-```tex
+### 1. 使用命令行提交 / Using Command Line
+
+```bash
+pnpm commit
+```
+
+此命令会自动执行以下步骤：
+
+1. 暂存所有更改 (`git add .`)
+2. 启动交互式提交流程
+3. 执行提交前的代码检查 (lint-staged)
+
+### 2. 交互式提交流程 / Interactive Commit Process
+
+按照提示依次填写：
+
+1. **选择提交类型** / Select commit type:
+
+   ```
+   feat:     ✨  新增功能 | A new feature
+   fix:      🐛  修复缺陷 | A bug fix
+   docs:     📝  文档更新 | Documentation only changes
+   style:    💄  代码格式 | Changes that do not affect the meaning of the code
+   refactor: ♻️   代码重构 | A code change that neither fixes a bug nor adds a feature
+   perf:     ⚡️  性能提升 | A code change that improves performance
+   test:     ✅  测试相关 | Adding missing tests or correcting existing tests
+   build:    📦️  构建相关 | Changes that affect the build system or external dependencies
+   ci:       🎡  持续集成 | Changes to our CI configuration files and scripts
+   chore:    🔨  其他修改 | Other changes that don't modify src or test files
+   revert:   ⏪️  回退代码 | Reverts a previous commit
+   ```
+
+2. **选择影响范围** / Select scope:
+
+   - 可以选择预设范围或自定义范围
+   - 可以留空（允许空范围）
+
+3. **填写提交描述** / Write commit subject:
+
+   - 简短精炼的变更描述
+   - 不需要首字母大写
+   - 不需要以句号结尾
+
+4. **填写详细描述** / Write commit body (optional):
+
+   - 使用 "|" 换行
+   - 描述变更的原因和影响
+
+5. **填写不兼容变更** / Write breaking changes (optional):
+
+   - 如果有不兼容变更，需要详细说明
+
+6. **关联 Issue** / Link issues (optional):
+   - 可以关联相关的 Issue
+   - 例如：#123, #456
+
+## Commit Message 格式 / Format
+
+```
 <type>(<scope>): <subject>
 <BLANK LINE>
 <body>
 <BLANK LINE>
+<BREAKING CHANGE>
+<BLANK LINE>
 <footer>
 ```
 
-> [!NOTE]
->
-> type代表本次提交的类型，以下是常见type类型。
->
-> Type represents the type of a commit, and the following are common type types.
+### 示例 / Examples
 
-- **feat**：新增功能 | A new feature
-- **fix**：修复缺陷 | A bug fix
-- **docs**：文档更新 | Documentation only changes
-- **style**：代码格式 | Changes that do not affect the meaning of the code
-- **refactor**：代码重构 | A code change that neither fixes a bug nor adds a
-  feature
-- **perf**：性能提升 | A code change that improves performance
-- **test**：测试相关 | Adding missing tests or correcting existing tests
-- **chore**：其他修改 | Other changes that don't modify src or test files
-- **revert**：回退代码 | Reverts a previous commit
-- **ci**：持续集成 | Changes to our CI configuration files and scripts
-- **build**：构建相关 | Changes that affect the build system or external
-  dependencies
+#### 功能开发 / Feature Development
 
-> [!NOTE]
->
-> scope代表本次提交的内容影响了哪些文件，可以不写，是选填
->
-> Scope on behalf of the content of the submission of which files, you can not
-> write, is optional fill
+```bash
+feat(user): ✨ 新增用户登录功能
 
-> [!NOTE]
->
-> subject是标题行，是必填项，描述本次提交的主体内容是什么，可以携带任务编号、修改内容之类的
->
-> Subject is the subject line, is a required field, describes what the subject
-> of this submission is, can carry the task number, modify the content and so on
+- 添加登录表单组件
+- 实现账号密码验证
+- 添加登录状态管理
 
-> [!NOTE]
->
-> body是更详细的说明文本，建议72个字符以内，需要描述的信息包括：
->
-> - 为什么这个变更是必须的? 它可能是用来修复一个bug，增加一个feature，提升性能、可靠性、稳定性等等
-> - 他如何解决这个问题? 具体描述解决问题的步骤
-> - 是否存在副作用、风险?
->
-> The body is the more detailed specification text and is recommended to be no
-> more than 72 characters. The information you need to describe includes:
->
-> - why is this change necessary? It may be used to fix a bug, add a feature,
->   improve performance, reliability, stability, etc.
-> - how did he solve the problem? Describe the steps to solve the problem
-> - are there any side effects, risks?
+BREAKING CHANGE: 更新了用户认证流程
+Closes #123
+```
 
-> [!NOTE]
->
-> footer是如果需要的话可以添加一个链接到issue地址或者其它文档，或者关闭某个issue
->
-> The footer is to add a link to the issue address or other document if needed,
-> or to close an issue
+#### Bug修复 / Bug Fix
 
-## 分支命名规范 / The branch naming convention
+```bash
+fix(auth): 🐛 修复登录验证码失效问题
+
+- 延长验证码有效期至5分钟
+- 优化验证码刷新机制
+
+Closes #456
+```
+
+## 分支管理规范 / Branch Management
 
 ### 基本原则 / Basic principles
 
@@ -115,3 +144,66 @@ The branch nomenclature is as follows:
   make up 0
 - the branch function is named using the 'Snake Case' nomenclature, that is, the
   underscore nomenclature.
+
+## 代码提交流程 / Code Submission Process
+
+1. 拉取最新代码
+
+   ```bash
+   git pull origin master
+   ```
+
+2. 创建功能分支
+
+   ```bash
+   git checkout -b feat_20240401_user_login
+   ```
+
+3. 开发完成后提交
+
+   ```bash
+   pnpm commit
+   ```
+
+4. 推送到远程
+
+   ```bash
+   git push origin feat_20240401_user_login
+   ```
+
+5. 创建合并请求（Pull Request）
+
+## 提交前检查 / Pre-commit Checks
+
+项目已配置 `lint-staged`，在提交时会自动执行：
+
+```json
+{
+  "*.{js,ts,vue}": ["eslint --fix", "prettier --write"],
+  "*.{vue,html}": ["eslint --fix", "prettier --write", "stylelint --fix"],
+  "*.{less,css}": ["stylelint --fix --allow-empty-input", "prettier --write"],
+  "*.md": ["prettier --write"]
+}
+```
+
+## 常见问题 / FAQ
+
+### 1. 如何修改最后一次提交？
+
+```bash
+git commit --amend
+# 然后使用 pnpm commit 重新提交
+```
+
+### 2. 提交时出现校验错误怎么办？
+
+- 按照错误提示修复代码格式
+- 确保所有 lint 规则都通过
+- 重新执行 `pnpm commit`
+
+### 3. 如何撤销上一次提交？
+
+```bash
+git reset --soft HEAD^
+# 然后使用 pnpm commit 重新提交
+```
