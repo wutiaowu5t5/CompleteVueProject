@@ -3,7 +3,7 @@
  * @Author: Satoru 5t5
  * @File .eslintrc.cjs
  * @Date: 2024-12-30 10:27:17
- * @LastEditTime: 2025-01-13 15:02:29
+ * @LastEditTime: 2025-01-13 16:02:24
  * @LastEditors: wutiaowu5t5 1987053649@qq.com
  * @FilePath: \CompleteVueProject\.eslintrc.cjs
  */
@@ -58,6 +58,26 @@ module.exports = {
       files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
         sourceType: 'script'
+      }
+    },
+    {
+      files: ['*.d.ts'], // 匹配所有 .d.ts 文件
+      parser: '@typescript-eslint/parser', // 使用 TypeScript parser
+      parserOptions: {
+        sourceType: 'module'
+      },
+      rules: {
+        'no-unused-vars': 'off',
+        'no-undef': 'off',
+        'no-var': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/no-explicit-any': 'off'
+      }
+    },
+    {
+      files: ['vite.config.js', 'vite.config.ts'], // 匹配 vite 配置文件
+      rules: {
+        'no-shadow': 'off' // 在 vite 配置文件中禁用 no-shadow 规则
       }
     }
   ],
