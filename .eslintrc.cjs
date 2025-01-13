@@ -3,7 +3,7 @@
  * @Author: Satoru 5t5
  * @File .eslintrc.cjs
  * @Date: 2024-12-30 10:27:17
- * @LastEditTime: 2025-01-13 11:15:40
+ * @LastEditTime: 2025-01-13 15:02:29
  * @LastEditors: wutiaowu5t5 1987053649@qq.com
  * @FilePath: \CompleteVueProject\.eslintrc.cjs
  */
@@ -80,6 +80,8 @@ module.exports = {
     'dist',
     'node_modules',
     '.eslintrc.cjs',
+    '.prettierrc.cjs',
+    'vite.config.js',
     'commitlint.config.cjs'
   ],
 
@@ -90,7 +92,7 @@ module.exports = {
    * @property {Object} rules - ESLint 规则配置
    */
   rules: {
-    // region 基础Javascript规则
+    // #region 基础Javascript规则
 
     /**
      * @rule object-curly-spacing
@@ -2297,9 +2299,9 @@ module.exports = {
      */
     yoda: 2,
 
-    // endregion 基础Javascript规则
+    // #endregion 基础Javascript规则
 
-    // region Vue规则
+    // #region Vue规则
     /**
      * @rule vue/no-unused-properties
      * @description 禁止在 Vue 组件中使用未声明的属性
@@ -2376,6 +2378,6 @@ module.exports = {
      * export default { name: 'UserProfile' }  // 多词组合也可以
      */
     'vue/multi-word-component-names': 'off'
-    // endregion Vue规则
+    // #endregion Vue规则
   }
 }

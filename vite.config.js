@@ -4,7 +4,7 @@
  * @description 项目构建和开发的核心配置文件
  */
 
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // 路径别名
@@ -38,7 +38,7 @@ import ViteRestart from 'vite-plugin-restart'
  * @returns {import('vite').UserConfig}
  */
 export default ({ mode }) => {
-  console.log('加载的环境变量', loadEnv(mode, process.cwd()))
+  // console.log('加载的环境变量', loadEnv(mode, process.cwd()))
   /**
    * CDN 外部化配置（已注释）
    * 用于将特定依赖替换为 CDN 引入，减小打包体积
@@ -214,6 +214,20 @@ export default ({ mode }) => {
          * external: ['lodash', 'jspdf', 'html2canvas'],
          * plugins: [globals]
          */
+      }
+    },
+
+    server: {
+      port: 3000,
+      open: true, // 自动打开浏览器
+      hmr: true, // 热更新
+      proxy: {
+        // 代理配置
+        '/api': {
+          target: 'http://your-api.com',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
       }
     }
   })
