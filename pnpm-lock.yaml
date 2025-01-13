@@ -138,6 +138,9 @@ importers:
       vite-plugin-prerender:
         specifier: ^1.0.8
         version: 1.0.8(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(less@4.2.1)(sugarss@2.0.0)(terser@5.37.0)(yaml@2.6.1))
+      vite-plugin-progress:
+        specifier: ^0.0.7
+        version: 0.0.7(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(less@4.2.1)(sugarss@2.0.0)(terser@5.37.0)(yaml@2.6.1))
       vite-plugin-restart:
         specifier: ^0.4.2
         version: 0.4.2(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(less@4.2.1)(sugarss@2.0.0)(terser@5.37.0)(yaml@2.6.1))
@@ -750,6 +753,9 @@ packages:
 
   '@types/minimatch@5.1.2':
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
+
+  '@types/node@10.17.60':
+    resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
 
   '@types/node@22.10.2':
     resolution: {integrity: sha512-Xxr6BBRCAOQixvonOye19wnzyDiUtTeqldOOmj3CkeblonbccA12PFwlufvRdrpjXxqnmUaeiU5EOA+7s5diUQ==}
@@ -3960,6 +3966,9 @@ packages:
   rc9@2.1.2:
     resolution: {integrity: sha512-btXCnMmRIBINM2LDZoEmOogIZU7Qe7zn4BpomSKZ/ykbLObuBdvG+mFq11DL6fjH1DRwHhrlgtYWG96bJiC7Cg==}
 
+  rd@2.0.1:
+    resolution: {integrity: sha512-/XdKU4UazUZTXFmI0dpABt8jSXPWcEyaGdk340KdHnsEOdkTctlX23aAK7ChQDn39YGNlAJr1M5uvaKt4QnpNw==}
+
   read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
 
@@ -4891,6 +4900,12 @@ packages:
     peerDependencies:
       vite: '>=2.0.0'
 
+  vite-plugin-progress@0.0.7:
+    resolution: {integrity: sha512-zyvKdcc/X+6hnw3J1HVV1TKrlFKC4Rh8GnDnWG/2qhRXjqytTcM++xZ+SAPnoDsSyWl8O93ymK0wZRgHAoglEQ==}
+    engines: {node: '>=14', pnpm: '>=7.0.0'}
+    peerDependencies:
+      vite: '>2.0.0-0'
+
   vite-plugin-restart@0.4.2:
     resolution: {integrity: sha512-9aWN2ScJ8hbT7aC8SDeZnsbWapnslz1vhNq6Vgf2GU9WdN4NExlrWhtnu7pmtOUG3Guj8y6lPcUZ+ls7SVP33w==}
     peerDependencies:
@@ -5675,6 +5690,8 @@ snapshots:
       '@types/node': 22.10.2
 
   '@types/minimatch@5.1.2': {}
+
+  '@types/node@10.17.60': {}
 
   '@types/node@22.10.2':
     dependencies:
@@ -9095,6 +9112,10 @@ snapshots:
       defu: 6.1.4
       destr: 2.0.3
 
+  rd@2.0.1:
+    dependencies:
+      '@types/node': 10.17.60
+
   read-cache@1.0.0:
     dependencies:
       pify: 2.3.0
@@ -10233,6 +10254,13 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  vite-plugin-progress@0.0.7(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(less@4.2.1)(sugarss@2.0.0)(terser@5.37.0)(yaml@2.6.1)):
+    dependencies:
+      picocolors: 1.1.1
+      progress: 2.0.3
+      rd: 2.0.1
+      vite: 6.0.6(@types/node@22.10.2)(jiti@2.4.2)(less@4.2.1)(sugarss@2.0.0)(terser@5.37.0)(yaml@2.6.1)
 
   vite-plugin-restart@0.4.2(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(less@4.2.1)(sugarss@2.0.0)(terser@5.37.0)(yaml@2.6.1)):
     dependencies:

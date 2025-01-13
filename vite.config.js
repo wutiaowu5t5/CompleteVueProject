@@ -32,6 +32,9 @@ import viteImagemin from 'vite-plugin-imagemin'
 // 修改配置重新启动vite
 import ViteRestart from 'vite-plugin-restart'
 
+// 打包进度条美化
+import progress from 'vite-plugin-progress'
+
 /**
  * Vite 配置函数
  * @param {Object} mode - 环境模式参数
@@ -54,6 +57,9 @@ export default ({ mode }) => {
     plugins: [
       // Vue 插件
       vue(),
+
+      // 打包进度条美化
+      progress(),
 
       /**
        * 打包分析插件配置
