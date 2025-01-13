@@ -1,3 +1,9 @@
+/**
+ * Vite 配置文件
+ * @file vite.config.js
+ * @description 项目构建和开发的核心配置文件
+ */
+
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -26,59 +32,84 @@ import viteImagemin from 'vite-plugin-imagemin'
 // 修改配置重新启动vite
 import ViteRestart from 'vite-plugin-restart'
 
+/**
+ * Vite 配置函数
+ * @param {Object} mode - 环境模式参数
+ * @returns {import('vite').UserConfig}
+ */
 export default ({ mode }) => {
   console.log('加载的环境变量', loadEnv(mode, process.cwd()))
-
-  //const globals = externalGlobals({
-  //  lodash: 'lodash',
-  //  jspdf: 'jspdf',
-  //  html2canvas: 'html2canvas'
-  //})
+  /**
+   * CDN 外部化配置（已注释）
+   * 用于将特定依赖替换为 CDN 引入，减小打包体积
+   * @example
+   * const globals = externalGlobals({
+   *   lodash: 'lodash',
+   *   jspdf: 'jspdf',
+   *   html2canvas: 'html2canvas'
+   * })
+   */
 
   return defineConfig({
     plugins: [
+      // Vue 插件
       vue(),
+
+      /**
+       * 打包分析插件配置
+       * @description 用于分析打包后的文件大小和依赖关系
+       */
       visualizer({
-        emitFile: false,
-        file: 'states.html',
-        open: true
+        emitFile: false, // 是否生成文件
+        file: 'states.html', // 分析文件名称
+        open: true // 自动打开分析页面
       }),
+
+      /**
+       * 组件自动导入插件配置
+       * @description 自动导入 Ant Design Vue 组件，无需手动 import
+       */
       Components({
         resolvers: [
           AntDesignVueResolver({
-            importStyle: false // css in js
+            importStyle: false // 不导入样式，使用 css in js
           })
         ]
       }),
+
+      /**
+       * Gzip 压缩插件配置
+       * @description 对打包后的文件进行 Gzip 压缩
+       */
       viteCompression({
-        verbose: true,
-        disable: false,
-        threshold: 10240,
-        algorithm: 'gzip',
-        ext: '.gz'
+        verbose: true, // 是否显示压缩信息
+        disable: false, // 是否禁用
+        threshold: 10240, // 体积大于阈值时启用压缩（单位：字节）
+        algorithm: 'gzip', // 压缩算法
+        ext: '.gz' // 生成的压缩包后缀
       }),
+
+      /**
+       * 图片压缩插件配置
+       * @description 自动压缩项目中的图片资源
+       */
       viteImagemin({
         gifsicle: {
-          // gif图片压缩
-          optimizationLevel: 3, // 选择1到3之间的优化级别
-          interlaced: false // 隔行扫描gif进行渐进式渲染
+          optimizationLevel: 3, // gif 优化级别 1-3
+          interlaced: false // 是否隔行扫描
         },
         optipng: {
-          // png
-          optimizationLevel: 7 // 选择0到7之间的优化级别
+          optimizationLevel: 7 // png 优化级别 0-7
         },
         mozjpeg: {
-          // jpeg
-          quality: 20 // 压缩质量，范围从0(最差)到100(最佳)。
+          quality: 20 // jpeg 压缩质量 0-100
         },
         pngquant: {
-          // png
-          quality: [0.8, 0.9], // Min和max是介于0(最差)到1(最佳)之间的数字，类似于JPEG。达到或超过最高质量所需的最少量的颜色。如果转换导致质量低于最低质量，图像将不会被保存。
-          speed: 4 // 压缩速度，1(强力)到11(最快)
+          quality: [0.8, 0.9], // png 压缩质量范围
+          speed: 4 // 压缩速度 1-11
         },
         svgo: {
           plugins: [
-            // svg压缩
             {
               name: 'removeViewBox'
             },
@@ -89,15 +120,30 @@ export default ({ mode }) => {
           ]
         }
       }),
-      //vitePrerender({
-      //  staticDir: path.join(__dirname, 'dist'),
-      //  routes: ['/', '/design', '/index']
-      //})
+
+      /**
+       * 预渲染配置（已注释）
+       * @description 用于生成静态HTML，提升首屏加载速度和SEO
+       * @example
+       * vitePrerender({
+       *   staticDir: path.join(__dirname, 'dist'),
+       *   routes: ['/', '/design', '/index']
+       * })
+       */
+
+      /**
+       * 配置文件修改重启插件
+       * @description 监听配置文件变化自动重启开发服务器
+       */
       ViteRestart({
         restart: ['my.config.[jt]s']
       })
     ],
-    // 路径别名配置 path alias configuration
+
+    /**
+     * 路径别名配置
+     * @description 简化模块导入路径
+     */
     resolve: {
       alias: {
         '@assets': path.resolve('./src/assets'),
@@ -111,31 +157,46 @@ export default ({ mode }) => {
         '@views': path.resolve('./src/views')
       }
     },
+
+    /**
+     * CSS 预处理器配置
+     * @description Less 全局变量配置
+     */
     css: {
       preprocessorOptions: {
         less: {
-          additionalData: `@import "./src/assets/styles/variables.less";` // 引入全局变量文件
+          additionalData: `@import "./src/assets/styles/variables.less";`
         }
       }
     },
+
+    /**
+     * 构建配置
+     * @description 生产环境打包配置
+     */
     build: {
-      minify: 'terser',
-      // 清除所有console和debugger
+      minify: 'terser', // 压缩方式
       terserOptions: {
         compress: {
-          drop_console: true,
-          drop_debugger: true
+          drop_console: true, // 移除 console
+          drop_debugger: true // 移除 debugger
         }
       },
       rollupOptions: {
         output: {
-          //静态资源分类打包
+          /**
+           * 静态资源分类打包配置
+           * @description 将不同类型的资源分别打包到不同目录
+           */
           chunkFileNames: 'static/js/[name]-[hash].js',
           entryFileNames: 'static/js/[name]-[hash].js',
           assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
 
+          /**
+           * 代码分包策略
+           * @description 将 node_modules 中的模块单独打包
+           */
           manualChunks(id) {
-            //静态资源拆分打包
             if (id.includes('node_modules')) {
               return id
                 .toString()
@@ -145,9 +206,14 @@ export default ({ mode }) => {
             }
           }
         }
-        // cdn 打包时不引入外部模块，使用cdn引入
-        //external: ['lodash', 'jspdf', 'html2canvas'],
-        //plugins: [globals]
+
+        /**
+         * CDN 配置（已注释）
+         * @description 将特定依赖排除打包，使用 CDN 引入
+         * @example
+         * external: ['lodash', 'jspdf', 'html2canvas'],
+         * plugins: [globals]
+         */
       }
     }
   })
