@@ -14,6 +14,9 @@ import path from 'path'
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 
+// 自动导入API
+import AutoImport from 'unplugin-auto-import/vite'
+
 // 视图分析打包资源
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -34,6 +37,9 @@ import ViteRestart from 'vite-plugin-restart'
 
 // 打包进度条美化
 import progress from 'vite-plugin-progress'
+
+// console美化
+import TurboConsole from 'vite-plugin-turbo-console'
 
 /**
  * Vite 配置函数
@@ -61,6 +67,9 @@ export default ({ mode }) => {
       // 打包进度条美化
       progress(),
 
+      // console美化
+      TurboConsole(),
+
       /**
        * 打包分析插件配置
        * @description 用于分析打包后的文件大小和依赖关系
@@ -81,6 +90,39 @@ export default ({ mode }) => {
             importStyle: false // 不导入样式，使用 css in js
           })
         ]
+      }),
+
+      /**
+       * 自动导入 API 插件配置
+       * @description 自动导入 Vue 相关函数
+       */
+      AutoImport({
+        // 自动导入 Vue 相关函数
+        imports: [
+          'vue',
+          'vue-router',
+          'pinia',
+          {
+            // 自定义导入
+            'ant-design-vue': ['message', 'Modal', 'notification']
+          }
+        ],
+        // 自动导入目录下的模块
+        dirs: [
+          './src/hooks/**',
+          './src/services/**',
+          './src/utils/**',
+          './src/directives/**',
+          './src/store/**',
+          './src/views/**',
+          './src/router/**'
+        ],
+        // 生成 TypeScript 声明文件
+        dts: './src/types/auto-imports.d.ts',
+        // 生成 ESLint 配置
+        eslintrc: {
+          enabled: true
+        }
       }),
 
       /**
