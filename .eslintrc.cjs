@@ -3,7 +3,7 @@
  * @Author: Satoru 5t5
  * @File .eslintrc.cjs
  * @Date: 2024-12-30 10:27:17
- * @LastEditTime: 2025-01-13 17:06:33
+ * @LastEditTime: 2025-01-14 09:45:28
  * @LastEditors: wutiaowu5t5 1987053649@qq.com
  * @FilePath: \CompleteVueProject\.eslintrc.cjs
  */
@@ -143,7 +143,7 @@ module.exports = {
      * // ✗ 错误
      * const arr = [1, 2, 3]
      */
-    'array-bracket-spacing': [2, 'always'],
+    // 'array-bracket-spacing': [2, 'always'],
 
     /**
      * @rule arrow-spacing
